@@ -6,6 +6,8 @@ const Quiz = () => {
   const [currQuestion, setCurrQuestion] = useState(0);
   const [answer, setAnswer] = useState("");
   const { score, setScore, setQuizState } = useContext(QuizContext);
+  const [disable, setDisable] = React.useState(false);
+  const inputRef = useRef(null);
 
   const nextQuestion = () => {
     if (Questions[currQuestion].pos === answer) {
@@ -14,7 +16,10 @@ const Quiz = () => {
 
     setCurrQuestion(currQuestion + 1);
     setAnswer("");
+    setDisable(false);
   };
+
+  // make buttons unclickable when clicked once
 
   const finishQuiz = () => {
     if (Questions[currQuestion].pos === answer) {
@@ -43,33 +48,41 @@ const Quiz = () => {
       <h1> {Questions[currQuestion].word} </h1>
       <div className="options">
         <button
+          disabled={disable}
           value="verb"
-          onClick={() => {
+          onClick={(e) => {
             setAnswer("verb");
+            setDisable(true);
           }}
         >
           verb
         </button>
         <button
+          disabled={disable}
           value="noun"
           onClick={() => {
             setAnswer("noun");
+            setDisable(true);
           }}
         >
           noun
         </button>
         <button
+          disabled={disable}
           value="adverb"
           onClick={() => {
             setAnswer("adverb");
+            setDisable(true);
           }}
         >
           adverb
         </button>
         <button
+          disabled={disable}
           value="adjective"
           onClick={() => {
             setAnswer("adjective");
+            setDisable(true);
           }}
         >
           adjective
