@@ -1,9 +1,10 @@
 import "./App.css";
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import MainMenu from "./components/MainMenu";
 import Quiz from "./components/Quiz";
 import Rank from "./components/RankScreen";
 import { QuizContext } from "./helpers/Contexts";
+// import { Questions } from "./helpers/TempData";
 
 function App() {
   const [quizState, setQuizState] = useState("menu");

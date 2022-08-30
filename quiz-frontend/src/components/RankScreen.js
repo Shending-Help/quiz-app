@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Questions } from "../helpers/TempData";
+// import { Questions } from "../helpers/TempData";
 import { QuizContext } from "../helpers/Contexts";
 
 const Rank = () => {

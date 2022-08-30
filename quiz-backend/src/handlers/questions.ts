@@ -10,6 +10,7 @@ const questionsRoutes = (app: express.Application) => {
 const showTenQuestions = async (_req: Request, res: Response) => {
   try {
     const questions = await questionStore.showTenRandom();
+    res.header("Access-Control-Allow-Origin", "*");
     res.json(questions);
   } catch (err) {
     res.status(500);
