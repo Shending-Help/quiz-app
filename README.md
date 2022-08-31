@@ -42,4 +42,4 @@ the server has two end points that you can use to interact with the server.
 
 - `http://localhost:5000/ranks` this takes a request body of the score of the user and checks it against other users' scores and returns how well he did (Rank).
 
-the front end consumes these end points and displays a mainmenu until you start the quiz then it starts fetching data from the api and displays all the questions. and when done it displays the rank.
+the front end consumes these end points and displays a mainmenu until you start the quiz then it starts fetching data from the api and displays all the questions. and when done it displays the rank and an option to restart the quiz.
