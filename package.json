@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:api": "cd quiz-backend && npm run build",
+    "build:frontend": "cd quiz-frontend && npm run build",
+    "start:api": "cd quiz-backend && npm run start",
+    "start:frontend": "cd quiz-frontend && npm run start"
   },
   "repository": {
     "type": "git",
