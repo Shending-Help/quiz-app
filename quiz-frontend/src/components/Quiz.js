@@ -2,34 +2,32 @@ import React, { useState, useContext } from "react";
 import Questions from "../helpers/TempData";
 import { QuizContext } from "../helpers/Contexts";
 
+// this component is used to display the quiz
 const Quiz = () => {
-  const [currQuestion, setCurrQuestion] = useState(0);
-  const [answer, setAnswer] = useState("");
-  const { score, setScore, setQuizState } = useContext(QuizContext);
-  const [disable, setDisable] = React.useState(false);
-  const [isCorrect, setIsCorrect] = React.useState();
+  const [currQuestion, setCurrQuestion] = useState(0); // current question index in the data array
+  const [answer, setAnswer] = useState(""); // current answer provided by the user
+  const { score, setScore, setQuizState } = useContext(QuizContext); // the context to pass the states to the components
+  const [disable, setDisable] = React.useState(false); // disable the button if the user has answered the question
 
+  // updates score if answer is correct and updates the current question index
   const nextQuestion = () => {
     if (Questions[currQuestion].pos === answer) {
-      setIsCorrect(true);
       setScore(score + 1);
     }
-
     setCurrQuestion(currQuestion + 1);
     setAnswer("");
     setDisable(false);
-    setIsCorrect();
   };
 
-  // make buttons unclickable when clicked once
-
+  // checks if this is the last question and if so changes the quizState to rank
   const finishQuiz = () => {
     if (Questions[currQuestion].pos === answer) {
-      setIsCorrect(true);
       setScore(score + 1);
     }
     setQuizState("rank");
   };
+
+  // gives feedback to the user if the answer is correct or not
   const feedBack = () => {
     if (Questions[currQuestion].pos === answer) {
       return <h2>Correct!</h2>;
@@ -58,7 +56,6 @@ const Quiz = () => {
         <button
           className="option"
           disabled={disable}
-          backgroundcolor={isCorrect ? "green" : "red"}
           value="verb"
           onClick={(e) => {
             setAnswer("verb");
@@ -70,7 +67,6 @@ const Quiz = () => {
         <button
           className="option"
           disabled={disable}
-          backgroundcolor={isCorrect ? "green" : "red"}
           value="noun"
           onClick={() => {
             setAnswer("noun");
@@ -82,7 +78,6 @@ const Quiz = () => {
         <button
           className="option"
           disabled={disable}
-          backgroundcolor={isCorrect ? "green" : "red"}
           value="adverb"
           onClick={() => {
             setAnswer("adverb");
@@ -94,7 +89,6 @@ const Quiz = () => {
         <button
           className="option"
           disabled={disable}
-          backgroundcolor={isCorrect ? "green" : "red"}
           value="adjective"
           onClick={() => {
             setAnswer("adjective");

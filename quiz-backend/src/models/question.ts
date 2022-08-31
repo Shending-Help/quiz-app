@@ -7,10 +7,12 @@ export type Question = {
 };
 
 export class Questions {
+  // this function returns an array of all the questions
   index(): Question[] {
     return getAllWords();
   }
 
+  // this shows a single random question
   showRandom(): Question {
     const questions = this.index();
     const randomIndex = Math.floor(Math.random() * questions.length);
@@ -30,7 +32,9 @@ export class Questions {
       }
     }
 
-    // counting the number of times a pos is repeated
+    /* counting the number of times a pos is repeated the filter method returns 
+    an array of objects with the same pos propertystoring array.length allows us
+    to know how many times the pos is repeated */
     const verbCount = tenRandom.filter((q) => q.pos === "verb").length;
     const nounCount = tenRandom.filter((q) => q.pos === "noun").length;
     const adjectiveCount = tenRandom.filter(

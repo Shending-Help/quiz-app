@@ -5,6 +5,7 @@ export type Rank = {
 };
 
 export class Ranks {
+  // this function rakes the user's score and returns his/her rank in terms of %
   showRank(scoreOfTest: number): Rank {
     try {
       const scores = getAllScores();

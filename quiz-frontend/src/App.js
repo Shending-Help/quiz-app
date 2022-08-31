@@ -7,6 +7,8 @@ import { QuizContext } from "./helpers/Contexts";
 // import { Questions } from "./helpers/TempData";
 
 function App() {
+  // use states to store the current state of the quiz
+  // and context to pass the states to the components
   const [quizState, setQuizState] = useState("menu");
   const [score, setScore] = useState(0);
 
