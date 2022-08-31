@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:api": "cd quiz-backend && npm run build",
-    "build:frontend": "cd quiz-frontend && npm run build",
+    "build:api": "cd quiz-backend && npm install && npm run build",
+    "build:frontend": "cd quiz-frontend && npm install && npm run build",
     "start:api": "cd quiz-backend && npm run start",
     "start:frontend": "cd quiz-frontend && npm run start"
   },
