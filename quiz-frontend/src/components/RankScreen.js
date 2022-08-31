@@ -4,15 +4,29 @@ import { QuizContext } from "../helpers/Contexts";
 
 const Rank = () => {
   const { score, setScore, setQuizState } = useContext(QuizContext);
+  const [rank, setRank] = useState(0);
+
+  fetch("http://localhost:5000/ranks", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ score: score * 10 }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      setRank(data.rank);
+    })
+    .catch((error) => console.log(error));
+
   const restartQuiz = () => {
     setScore(0);
     setQuizState("menu");
   };
+
   return (
     <div className="Rank">
-      <h1> You scored {score} out of 10! </h1>
+      <h1> Your Rank {rank}%</h1>
 
-      <button onClick={restartQuiz}>Restart Quiz</button>
+      <button onClick={restartQuiz}>Try Again</button>
     </div>
   );
 };

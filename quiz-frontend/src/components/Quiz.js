@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Questions from "../helpers/TempData";
 import { QuizContext } from "../helpers/Contexts";
 
@@ -7,22 +7,25 @@ const Quiz = () => {
   const [answer, setAnswer] = useState("");
   const { score, setScore, setQuizState } = useContext(QuizContext);
   const [disable, setDisable] = React.useState(false);
-  const inputRef = useRef(null);
+  const [isCorrect, setIsCorrect] = React.useState();
 
   const nextQuestion = () => {
     if (Questions[currQuestion].pos === answer) {
+      setIsCorrect(true);
       setScore(score + 1);
     }
 
     setCurrQuestion(currQuestion + 1);
     setAnswer("");
     setDisable(false);
+    setIsCorrect();
   };
 
   // make buttons unclickable when clicked once
 
   const finishQuiz = () => {
     if (Questions[currQuestion].pos === answer) {
+      setIsCorrect(true);
       setScore(score + 1);
     }
     setQuizState("rank");
@@ -40,15 +43,22 @@ const Quiz = () => {
 
   return (
     <div className="Quiz">
-      <label for="file">Quiz Progress:</label>
-      <progress id="file" value={(currQuestion / 10) * 100} max="100">
+      <label for="file">{(currQuestion / 10) * 100}%</label>
+      <progress
+        className="Bar"
+        id="file"
+        value={(currQuestion / 10) * 100}
+        max="100"
+      >
         {" "}
         {(currQuestion / 10) * 100}{" "}
       </progress>
       <h1> {Questions[currQuestion].word} </h1>
       <div className="options">
         <button
+          className="option"
           disabled={disable}
+          backgroundcolor={isCorrect ? "green" : "red"}
           value="verb"
           onClick={(e) => {
             setAnswer("verb");
@@ -58,7 +68,9 @@ const Quiz = () => {
           verb
         </button>
         <button
+          className="option"
           disabled={disable}
+          backgroundcolor={isCorrect ? "green" : "red"}
           value="noun"
           onClick={() => {
             setAnswer("noun");
@@ -68,7 +80,9 @@ const Quiz = () => {
           noun
         </button>
         <button
+          className="option"
           disabled={disable}
+          backgroundcolor={isCorrect ? "green" : "red"}
           value="adverb"
           onClick={() => {
             setAnswer("adverb");
@@ -78,7 +92,9 @@ const Quiz = () => {
           adverb
         </button>
         <button
+          className="option"
           disabled={disable}
+          backgroundcolor={isCorrect ? "green" : "red"}
           value="adjective"
           onClick={() => {
             setAnswer("adjective");
